@@ -5,9 +5,9 @@ WORKDIR /home
 # 设置代理环境变量
 ARG HTTP_PROXY
 ARG HTTPS_PROXY
-ENV http_proxy=$HTTP_PROXY
-ENV https_proxy=$HTTPS_PROXY
-ENV NO_PROXY=localhost,127.0.0.1
+ENV http_proxy=${HTTP_PROXY}
+ENV https_proxy=${HTTPS_PROXY}
+ENV no_proxy=localhost,127.0.0.1
 
 # 测试代理是否生效
 # RUN curl -I https://www.google.com
@@ -45,7 +45,7 @@ COPY ./phpredis-2.2.7.tar.gz .
 
 RUN tar zxf phpredis-2.2.7.tar.gz
 
-RUN cd phpredis-2.2.7 && /usr/local/bin/phpize && ./configure -with-php-config=/usr/local/bin/php-config && make && make install && make test
+RUN cd phpredis-2.2.7 && /usr/local/bin/phpize && ./configure --with-php-config=/usr/local/bin/php-config && make && make install && make test
 
 RUN docker-php-ext-enable redis
 
@@ -57,7 +57,7 @@ COPY ./xdebug-2.5.5.tgz .
 
 RUN tar zxf xdebug-2.5.5.tgz
 
-RUN cd xdebug-2.5.5/ && /usr/local/bin/phpize && ./configure -with-php-config=/usr/local/bin/php-config && make && make install && make test
+RUN cd xdebug-2.5.5/ && /usr/local/bin/phpize && ./configure --with-php-config=/usr/local/bin/php-config && make && make install && make test
 
 RUN docker-php-ext-enable xdebug
 
