@@ -5,6 +5,7 @@
 - pdo_mysql pdo
 - gd
 - zip
+- bcmath
 
 ```
 docker build -t menzai/php56-phalcon2-redis2-xdebug2:v1.x .
